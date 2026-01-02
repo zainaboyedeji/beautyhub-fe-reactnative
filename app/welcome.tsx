@@ -11,12 +11,11 @@ export default function WelcomeScreen() {
   const router = useRouter();
 
   const handleGetStarted = () => {
-    router.replace('/(tabs)');
+    router.push('/signup');
   };
 
   const handleLogin = () => {
-    // For now, just go to tabs or a login route if it existed
-    router.replace('/(tabs)');
+    router.push('/login');
   };
 
   return (
@@ -33,27 +32,27 @@ export default function WelcomeScreen() {
             style={styles.logo}
             contentFit="contain"
           />
-          
         </View>
       </View>
 
       <ThemedView style={styles.bottomSection}>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.primaryButton} onPress={handleGetStarted} activeOpacity={0.8}>
-            <Text style={styles.primaryButtonText}>Get started</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.secondaryButton} onPress={handleLogin} activeOpacity={0.8}>
-            <Text style={styles.secondaryButtonText}>Login To Your Account</Text>
-          </TouchableOpacity>
+        <View style={styles.heroTextContainer}>
+          <Text style={styles.heroText}>Shop Everything Beauty,</Text>
+          <Text style={styles.heroText}>All in One Hub</Text>
         </View>
 
-        <TouchableOpacity activeOpacity={0.6}>
-          <Text style={styles.footerText}>Terms of Use</Text>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.6}>
-          <Text style={styles.footerText}>Privacy Policy</Text>
-        </TouchableOpacity>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity style={styles.primaryButton} onPress={handleLogin} activeOpacity={0.8}>
+            <Text style={styles.primaryButtonText}>Login To Your Account</Text>
+          </TouchableOpacity>
+
+          <View style={styles.signupContainer}>
+            <Text style={styles.signupText}>Don&apos;t have an account? </Text>
+            <TouchableOpacity onPress={handleGetStarted}>
+              <Text style={styles.signupLink}>Sign up</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
       </ThemedView>
     </View>
   );
@@ -62,7 +61,6 @@ export default function WelcomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FFD9F0',
   },
   topSection: {
     height: height * 0.7, // Occupy ~70% of the screen
@@ -90,20 +88,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   heroText: {
-    color: '#FFD9F0',
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     textAlign: 'center',
-    textShadowColor: 'rgba(30,30,30,0.3)',
-    textShadowOffset: { width: 0, height: 2 },
-    textShadowRadius: 4,
+    color: '#1E1E1E',
   },
   bottomSection: {
     flex: 1,
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
     marginTop: -24, // Overlap slightly
-    backgroundColor: '#FFD9F0',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingVertical: 40,
@@ -122,22 +116,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   primaryButtonText: {
-    color: '#FFD9F0',
     fontSize: 16,
     fontWeight: '600',
+    color: '#fff',
   },
-  secondaryButton: {
-    backgroundColor: '#FFD9F0',
-    paddingVertical: 16,
-    borderWidth: 1,
-    borderColor: '#1E1E1E',
-    borderRadius: 0,
+  signupContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    marginTop: 16,
   },
-  secondaryButtonText: {
+  signupText: {
+    fontSize: 14,
     color: '#1E1E1E',
-    fontSize: 16,
+  },
+  signupLink: {
+    fontSize: 14,
     fontWeight: '600',
+    color: '#1E1E1E',
+    textDecorationLine: 'underline',
   },
   footerText: {
     fontSize: 12,
